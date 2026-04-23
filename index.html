@@ -61,7 +61,7 @@
         }
 
         .contact {
-            margin: 40px 0 0;
+            margin: 0;
             font-size: 0.95rem;
         }
 
@@ -86,6 +86,20 @@
             font-size: 0.8rem;
             color: #8a8a82;
         }
+
+        .br-mobile {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .br-mobile {
+                display: inline;
+            }
+
+            .br-desktop {
+                display: none;
+            }
+        }
     </style>
 </head>
 
@@ -93,9 +107,10 @@
     <main>
         <h1>Tools On Earth LLC</h1>
         <hr class="hairline" aria-hidden="true">
-        <p class="description">An independent software organization building<br>simple, edifying software for people of all ages.</p>
+        <p class="description">An independent software company<br class="br-mobile"> building<br class="br-desktop"> simple, edifying tools<br class="br-mobile"> for people of all ages.</p>
+        <hr class="hairline" aria-hidden="true">
         <p class="contact"><a href="mailto:timothy@toolsonearth.org">timothy@toolsonearth.org</a></p>
-        <p class="copyright">&copy; 2026 Tools On Earth LLC. All rights reserved.</p>
+        <p class="copyright">&copy; 2026 Tools On Earth LLC.<br class="br-mobile"> All rights reserved.</p>
     </main>
 </body>
 
