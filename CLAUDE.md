@@ -1,6 +1,13 @@
 # Tools On Earth LLC — Landing Site
 
-Single-page landing site for Tools On Earth LLC.
+Single-page landing site for Tools On Earth LLC, plus unlinked App Store compliance subpages.
+
+## Site structure
+- `index.html` — landing page. All constraints below apply to it.
+- `anagrams/privacy/index.html` → `https://toolsonearth.org/anagrams/privacy/` — Privacy Policy for the Anagrams iOS app (App Store requirement).
+- `anagrams/support/index.html` → `https://toolsonearth.org/anagrams/support/` — Support/FAQ page for Anagrams (App Store requirement).
+
+The Anagrams subpages are intentionally NOT linked from the landing page — they exist only as public URLs for App Store Connect. They reuse the design system (colors, IBM Plex Mono, hairlines, base font size) but are scrollable, left-aligned articles in a `min(92vw, 640px)` column; the one-viewport, centered-grid, and wrap-budget constraints below apply to the landing page only. Contact email on both subpages is timothy@toolsonearth.org.
 
 ## Tech constraints
 - Static HTML + CSS only. No JavaScript. No build tools.
