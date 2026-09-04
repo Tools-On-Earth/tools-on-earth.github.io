@@ -6,6 +6,19 @@ Single-page landing site for Tools On Earth LLC, plus unlinked App Store complia
 - `index.html` — landing page. All constraints below apply to it.
 - `anagrams/privacy/index.html` → `https://toolsonearth.org/anagrams/privacy/` — Privacy Policy for the Anagrams iOS app (App Store requirement).
 - `anagrams/support/index.html` → `https://toolsonearth.org/anagrams/support/` — Support/FAQ page for Anagrams (App Store requirement).
+- `anagrams/get/…/index.html` — channel-tracked App Store redirect pages (see below).
+
+### App Store redirect pages (`anagrams/get/…`)
+Static meta-refresh pages that forward to Apple **campaign links**, so App Store Connect's App Analytics (Acquisition → Campaigns) reports page views/downloads per distribution channel. One page per channel; each differs only in its `ct` campaign token:
+
+| Channel | URL | `ct` token |
+|---|---|---|
+| Word of mouth (short, speakable) | `/anagrams/get/` | `wom` |
+| QR code / print | `/anagrams/get/print/` | `print` |
+| Email / direct message | `/anagrams/get/email/` | `email` |
+| Website visitors | `/anagrams/get/site/` | `site` |
+
+They carry `<meta name="robots" content="noindex">`, use the design system for the visible fallback, and are exempt from the landing-page layout constraints. **Pending app launch:** the target URLs contain literal placeholders `idAPPLE_ID` and `PROVIDER_TOKEN` (marked with TODO comments); once Anagrams is live, create the four campaigns in App Store Connect and paste each generated campaign URL into its page (both the meta refresh and the fallback `<a>`; keep `&` escaped as `&amp;`).
 
 The Anagrams subpages are intentionally NOT linked from the landing page — they exist only as public URLs for App Store Connect. They reuse the design system (colors, IBM Plex Mono, hairlines, base font size) but are scrollable, left-aligned articles in a `min(92vw, 640px)` column; the one-viewport, centered-grid, and wrap-budget constraints below apply to the landing page only. Contact email on both subpages is timothy@toolsonearth.org.
 
