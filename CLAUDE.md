@@ -6,6 +6,7 @@ Single-page landing site for Tools On Earth LLC, plus unlinked App Store complia
 - `index.html` — landing page. All constraints below apply to it.
 - `anagrams/privacy/index.html` → `https://toolsonearth.org/anagrams/privacy/` — Privacy Policy for the Anagrams iOS app (App Store requirement).
 - `anagrams/support/index.html` → `https://toolsonearth.org/anagrams/support/` — Support/FAQ page for Anagrams (App Store requirement).
+- `anagrams/family-friendly/index.html` → `https://toolsonearth.org/anagrams/family-friendly/` — age-suitability page: explains the curated (censored) word and definition lists and invites removal suggestions by email.
 - `anagrams/get/…/index.html` — channel-tracked App Store redirect pages (see below).
 
 ### App Store redirect pages (`anagrams/get/…`)
@@ -20,7 +21,7 @@ Static meta-refresh pages that forward to Apple **campaign links**, so App Store
 
 They carry `<meta name="robots" content="noindex">`, use the design system for the visible fallback, and are exempt from the landing-page layout constraints. **Pending app launch:** the target URLs contain literal placeholders `idAPPLE_ID` and `PROVIDER_TOKEN` (marked with TODO comments); once Anagrams is live, create the four campaigns in App Store Connect and paste each generated campaign URL into its page (both the meta refresh and the fallback `<a>`; keep `&` escaped as `&amp;`).
 
-The Anagrams subpages are intentionally NOT linked from the landing page — they exist only as public URLs for App Store Connect. They reuse the design system (colors, IBM Plex Mono, hairlines, base font size) but are scrollable, left-aligned articles in a `min(92vw, 640px)` column; the one-viewport, centered-grid, and wrap-budget constraints below apply to the landing page only. Contact email on both subpages is timothy@toolsonearth.org.
+The Anagrams subpages are intentionally NOT linked from the landing page — they exist only as public URLs for App Store Connect. They reuse the design system (colors, IBM Plex Mono, hairlines, base font size) but are scrollable, left-aligned articles in a `min(92vw, 640px)` column; the one-viewport, centered-grid, and wrap-budget constraints below apply to the landing page only. Contact email on the landing page and all Anagrams subpages is support@toolsonearth.org.
 
 ## Tech constraints
 - Static HTML + CSS only. No JavaScript. No build tools.
@@ -37,7 +38,7 @@ The Anagrams subpages are intentionally NOT linked from the landing page — the
 - Description — same sentence, responsive line count:
   - Desktop (viewport > 600px): 2 lines, break after "building"
   - Mobile (viewport ≤ 600px): 3 lines, breaks after "company" and "tools"
-- Email contact (`timothy@toolsonearth.org`, single line)
+- Email contact (`support@toolsonearth.org`, single line)
 - Copyright — responsive:
   - Desktop: 1 line (`© YEAR Tools On Earth LLC. All rights reserved.`)
   - Mobile: 2 lines (`© YEAR Tools On Earth LLC.` / `All rights reserved.`)
@@ -85,7 +86,7 @@ Before changing any copy, count characters for **both** views against the budget
 - Title `Tools On Earth LLC` = 18 / 32
 - Description line 1 `An independent software company building` = 40 / 51
 - Description line 2 `simple, edifying tools for people of all ages.` = 47 / 51
-- Email `timothy@toolsonearth.org` = 24 / 60
+- Email `support@toolsonearth.org` = 24 / 60
 - Copyright `© 2026 Tools On Earth LLC. All rights reserved.` = 47 / 71
 
 **Mobile view, 3-line description, 2-line copyright:**
@@ -93,7 +94,7 @@ Before changing any copy, count characters for **both** views against the budget
 - Description line 1 `An independent software company` = 31 / 32
 - Description line 2 `building simple, edifying tools` = 31 / 32
 - Description line 3 `for people of all ages.` = 23 / 32
-- Email `timothy@toolsonearth.org` = 24 / 36
+- Email `support@toolsonearth.org` = 24 / 36
 - Copyright line 1 `© 2026 Tools On Earth LLC.` = 26 / 43
 - Copyright line 2 `All rights reserved.` = 20 / 43
 
