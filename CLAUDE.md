@@ -14,12 +14,12 @@ Static meta-refresh pages that forward to Apple **campaign links**, so App Store
 
 | Channel | URL | `ct` token |
 |---|---|---|
-| Word of mouth (short, speakable) | `/anagrams/get/` | `wom` |
+| Word of mouth (short, speakable) | `/anagrams/get/` | `grapevine` |
 | QR code / print | `/anagrams/get/print/` | `print` |
 | Email / direct message | `/anagrams/get/email/` | `email` |
 | Website visitors | `/anagrams/get/site/` | `site` |
 
-They carry `<meta name="robots" content="noindex">`, use the design system for the visible fallback, and are exempt from the landing-page layout constraints. **Pending app launch:** the target URLs contain literal placeholders `idAPPLE_ID` and `PROVIDER_TOKEN` (marked with TODO comments); once Anagrams is live, create the four campaigns in App Store Connect and paste each generated campaign URL into its page (both the meta refresh and the fallback `<a>`; keep `&` escaped as `&amp;`).
+They carry `<meta name="robots" content="noindex">`, use the design system for the visible fallback, and are exempt from the landing-page layout constraints. **Live since launch (2026-10):** all four pages target `https://apps.apple.com/app/apple-store/id6800109189?pt=2423924&ct=<token>&mt=8` — App ID `6800109189` and provider token `2423924` are shared; only `ct` differs. Each URL appears twice per page (meta refresh and fallback `<a>`), with `&` escaped as `&amp;`. To add a channel: copy a page folder, change `ct` in both places and the channel comment, and add a row to the table above. App Store Connect doesn't save generated links; a campaign appears under Analytics → Acquisition → Campaigns only after ≥24h and ~5 first-time downloads. Never rename or delete a distributed URL.
 
 The Anagrams subpages are intentionally NOT linked from the landing page — they exist only as public URLs for App Store Connect. They reuse the design system (colors, IBM Plex Mono, hairlines, base font size) but are scrollable, left-aligned articles in a `min(92vw, 640px)` column; the one-viewport, centered-grid, and wrap-budget constraints below apply to the landing page only. Contact email on the landing page and all Anagrams subpages is support@toolsonearth.org.
 
