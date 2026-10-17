@@ -62,7 +62,7 @@
         }
 
         .promo {
-            margin: 20px 0 0;
+            margin: 0 0 1.7em;
         }
 
         .meta {
@@ -149,13 +149,13 @@
     <main>
         <img class="icon" src="/anagrams/icon.jpg" width="128" height="128" alt="Anagrams app icon">
         <h1>{{title}}</h1>
-{{subtitle_block}}{{promo_block}}        <p class="meta">{{price}} &middot; Version {{version}}</p>
+{{subtitle_block}}        <p class="meta">{{price}} &middot; Version {{version}}</p>
         <a class="badge" href="https://toolsonearth.org/anagrams/get/site/"><img src="/anagrams/app-store-badge.svg" width="144" height="48" alt="Download on the App Store"></a>
 
         <hr class="hairline" aria-hidden="true">
 
         <div class="description">
-{{description_html}}
+{{promo_block}}{{description_html}}
         </div>
 
         <hr class="hairline" aria-hidden="true">

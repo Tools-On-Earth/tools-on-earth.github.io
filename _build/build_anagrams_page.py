@@ -82,7 +82,7 @@ def main():
         "title": html.escape(title),
         "meta_description": html.escape(subtitle or first_sentence),
         "subtitle_block": f'        <p class="subtitle">{html.escape(subtitle)}</p>\n' if subtitle else "",
-        "promo_block": f'        <p class="promo">{html.escape(promo)}</p>\n' if promo else "",
+        "promo_block": f'            <p class="promo">{html.escape(promo)}</p>\n' if promo else "",
         "price": html.escape(app["formattedPrice"].strip()),
         "version": html.escape(app["version"].strip()),
         "description_html": paragraphs(app["description"]),
