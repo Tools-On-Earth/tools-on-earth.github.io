@@ -1,0 +1,5 @@
+{
+    "_comment": "Fields Apple's public Lookup API does not provide. Copy them from App Store Connect when they change. Leave a field empty (\"\") to hide it on the page. Pushing a change here regenerates anagrams/index.html automatically.",
+    "subtitle": "",
+    "promoText": ""
+}

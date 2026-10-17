@@ -4,6 +4,7 @@ Single-page landing site for Tools On Earth LLC, plus unlinked App Store complia
 
 ## Site structure
 - `index.html` — landing page. All constraints below apply to it.
+- `anagrams/index.html` → `https://toolsonearth.org/anagrams/` — Anagrams marketing page. **GENERATED — never edit by hand** (see "Anagrams marketing page" below).
 - `anagrams/privacy/index.html` → `https://toolsonearth.org/anagrams/privacy/` — Privacy Policy for the Anagrams iOS app (App Store requirement).
 - `anagrams/support/index.html` → `https://toolsonearth.org/anagrams/support/` — Support/FAQ page for Anagrams (App Store requirement).
 - `anagrams/family-friendly/index.html` → `https://toolsonearth.org/anagrams/family-friendly/` — age-suitability page: explains the curated (censored) word and definition lists and invites removal suggestions by email.
@@ -21,6 +22,17 @@ Static meta-refresh pages that forward to Apple **campaign links**, so App Store
 | Website visitors | `/anagrams/get/site/` | `site` |
 
 They carry `<meta name="robots" content="noindex">`, use the design system for the visible fallback (four rows, each its own `<p>`: **Anagrams** (`.title`, weight 600) / Redirecting to the App Store… (`.status`, followed by one blank line via `margin-bottom: 1.7em`) / If nothing happens, / [tap or click here]. — always "the App Store", never "Apple App Store", per Apple's marketing guidelines), and are exempt from the landing-page layout constraints. **Live since launch (2026-10):** all four pages target `https://apps.apple.com/app/apple-store/id6800109189?pt=2423924&ct=<token>&mt=8` — App ID `6800109189` and provider token `2423924` are shared; only `ct` differs. Each URL appears twice per page (meta refresh and fallback `<a>`), with `&` escaped as `&amp;`. To add a channel: copy a page folder, change `ct` in both places and the channel comment, and add a row to the table above. App Store Connect doesn't save generated links; a campaign appears under Analytics → Acquisition → Campaigns only after ≥24h and ~5 first-time downloads. Never rename or delete a distributed URL.
+
+### Anagrams marketing page (`anagrams/`) — auto-synced from the App Store
+Mirrors the App Store listing: icon, title, subtitle, promo text, price · version, official "Download on the App Store" badge, description, and a QR code + printed link — badge, QR and link all go to the `site` campaign (`/anagrams/get/site/`).
+
+- **Build:** `python3 _build/build_anagrams_page.py` (stdlib only) fetches Apple's public Lookup API (`itunes.apple.com/lookup?id=6800109189&country=us`) for title, description, version, price and icon; merges `_build/anagrams-manual.json`; fills `_build/anagrams-template.html`; writes `anagrams/index.html` and `anagrams/icon.jpg` only if changed. Fails safely: any API/validation error exits non-zero before writing anything.
+- **Subtitle and promo text are NOT in the public API** (only the authenticated App Store Connect API has them) — they're hand-maintained in `_build/anagrams-manual.json`; an empty value hides that line.
+- **Layout changes** go in `_build/anagrams-template.html`, then re-run the build. `_build/` is excluded from publishing because Jekyll skips `_`-prefixed folders.
+- **Automation:** `.github/workflows/sync-anagrams-listing.yml` runs daily at 10:00 UTC, on the manual "Run workflow" button, and on pushes touching `_build/**`. Commits as `github-actions[bot]` only when something changed, then requests a Pages build. No secrets.
+- **Because the bot commits to `main`, always `git pull` before starting local work.**
+- Static assets: `anagrams/app-store-badge.svg` (Apple's official black badge, from Apple Marketing Tools — don't modify), `anagrams/qr-site.svg` (encodes `https://toolsonearth.org/anagrams/get/site/`; never needs regenerating).
+- Visitors' browsers load nothing from Apple — the icon is downloaded at build time.
 
 The Anagrams subpages are intentionally NOT linked from the landing page — they exist only as public URLs for App Store Connect. They reuse the design system (colors, IBM Plex Mono, hairlines, base font size) but are scrollable, left-aligned articles in a `min(92vw, 640px)` column; the one-viewport, centered-grid, and wrap-budget constraints below apply to the landing page only. Contact email on the landing page and all Anagrams subpages is support@toolsonearth.org.
 
