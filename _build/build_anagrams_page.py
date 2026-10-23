@@ -63,7 +63,8 @@ def main():
         fail(f"Lookup API returned no results for app {APP_ID}")
     app = data["results"][0]
 
-    required = ["trackName", "description", "version", "formattedPrice", "artworkUrl512"]
+    required = ["trackName", "description", "version", "formattedPrice", "artworkUrl512",
+                "price", "currency", "minimumOsVersion"]
     missing = [k for k in required if not str(app.get(k, "")).strip()]
     if missing:
         fail(f"Lookup API response is missing {', '.join(missing)}")
@@ -81,9 +82,26 @@ def main():
 
     title = app["trackName"].strip()
     first_sentence = app["description"].strip().split(". ")[0].rstrip(".") + "."
+    summary = promo or subtitle or first_sentence
+    json_ld = json.dumps({
+        "@context": "https://schema.org",
+        "@type": "MobileApplication",
+        "name": title,
+        "alternateName": "Anagrams",
+        "description": summary,
+        "url": "https://www.toolsonearth.org/anagrams/",
+        "installUrl": "https://www.toolsonearth.org/anagrams/get/site/",
+        "image": "https://www.toolsonearth.org/anagrams/icon.jpg",
+        "operatingSystem": f"iOS {app['minimumOsVersion']} or later",
+        "applicationCategory": "GameApplication",
+        "softwareVersion": app["version"],
+        "offers": {"@type": "Offer", "price": f"{app['price']:.2f}", "priceCurrency": app["currency"]},
+        "publisher": {"@type": "Organization", "name": "Tools On Earth LLC", "url": "https://www.toolsonearth.org/"},
+    }, indent=4, ensure_ascii=False).replace("</", "<\\/")
     values = {
         "title": html.escape(title),
-        "meta_description": html.escape(subtitle or first_sentence),
+        "meta_description": html.escape(summary),
+        "json_ld": json_ld,
         "subtitle_block": f'        <p class="subtitle">{html.escape(subtitle)}</p>\n' if subtitle else "",
         "promo_block": f'            <p class="promo">{html.escape(promo)}</p>\n' if promo else "",
         "price": html.escape(app["formattedPrice"].strip()),

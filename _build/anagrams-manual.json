@@ -1,5 +1,5 @@
 {
     "_comment": "Fields Apple's public Lookup API does not provide. Copy them from App Store Connect when they change. Leave a field empty (\"\") to hide it on the page. Pushing a change here regenerates anagrams/index.html automatically.",
     "subtitle": "Unscramble & learn new words!",
-    "promoText": "Do you love word games, puzzles or learning new words and their meanings? Anagrams challenges you to find as many words as you can and then reveals what you missed!"
+    "promoText": "Do you love word games, puzzles or learning new words? Anagrams challenges you to find as many words as you can and then reveals what you missed, with definitions!"
 }
