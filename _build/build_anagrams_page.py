@@ -17,6 +17,7 @@ import html
 import json
 import re
 import sys
+import time
 import urllib.request
 from pathlib import Path
 
@@ -52,8 +53,10 @@ def paragraphs(text, indent="            "):
 
 
 def main():
+    # Apple's CDN caches each exact lookup URL for ~24h, so a fixed URL can
+    # return yesterday's listing. A unique parameter forces a fresh response.
     try:
-        data = json.loads(fetch(LOOKUP_URL))
+        data = json.loads(fetch(f"{LOOKUP_URL}&cb={int(time.time())}"))
     except Exception as e:
         fail(f"Lookup API request failed ({e})")
     if data.get("resultCount", 0) < 1:
